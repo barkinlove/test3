@@ -2,28 +2,37 @@
 #include <tclap/ValueArg.h>
 #include <cstdlib>
 
-class command_module {
-  virtual void execute() = 0;
+class cmd final {
+ public:
+  cmd(const std::string& desc, char delimeter, const std::string& version)
+      : m_instance{desc, delimeter, version} {
+    setup_options();
+  }
+
+  void parse(int argc, char* argv[]) { m_instance.parse(argc, argv); }
+
+ private:
+  void setup_options() {
+    TCLAP::ValueArg<std::string> input_file{"f",  "file", "input file",
+                                            true, "",     "string"};
+    m_instance.add(input_file);
+
+    TCLAP::ValueArg<std::string> work_module{
+        "m", "module", "module to execute", true, "", "string"};
+    m_instance.add(work_module);
+  }
+
+ private:
+  TCLAP::CmdLine m_instance;
 };
 
-class words_module final : public command_module {
-  void execute() override {}
-};
-
-class checksum_module final : public command_module {
-  void execute() override {}
-};
+void setup_cmd_options() {}
 
 int main(int argc, char* argv[]) {
   try {
-    TCLAP::ValueArg<std::string> input_file{"f",  "file", "input file",
-                                            true, "",     "string"};
-    TCLAP::CmdLine commandline{"how do you do?", ' ', "0.0.1"};
-    commandline.add(input_file);
-    commandline.parse(argc, argv);
+    cmd cmd_instance{"How are you doing?", ' ', "v0.0.1"};
+    cmd_instance.parse(argc, argv);
 
-    auto value = input_file.getValue();
-    std::cout << value << '\n';
   } catch (std::exception& e) {
     std::cerr << e.what() << '\n';
   }
