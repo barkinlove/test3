@@ -1,0 +1,19 @@
+#!/bin/sh
+
+GENERATOR="Unix Makefiles"
+
+if [ ! -d "build" ]; then
+  mkdir build
+fi
+
+cd build
+
+while getopts "n" option; do
+  case "${option}" in
+    n)
+      GENERATOR="Ninja"
+      ;;
+  esac
+done
+
+cmake -G "$GENERATOR" .. && cmake --build . --parallel $(nproc)
