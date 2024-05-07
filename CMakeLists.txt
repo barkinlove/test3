@@ -11,7 +11,11 @@ find_path(TCLAP_INCLUDE_DIRS "tclap/Arg.h")
 
 add_executable(
   ${PROJECT_NAME}
-  src/main.cpp
+  src/main.cxx
+  src/cmd_line_params.cxx
+  src/modules/checksum_module.cxx
+  src/modules/words_module.cxx
+  src/modules/module_executor.cxx
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src/include)
