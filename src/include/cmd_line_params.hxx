@@ -4,6 +4,11 @@
 #include <cstdlib>
 #include <memory>
 
+// Actually, it'd be better to create a cmd line (or cmd params) interface to
+// be able to switch the internal argument parsing library without much effort.
+// Don't have much time to design it thoroughly. Seems not so trivial at the
+// first glance.
+
 class cmd_line_params final {
  private:
   cmd_line_params();
