@@ -17,6 +17,7 @@ add_executable(
   src/modules/words_module.cxx
   src/modules/module_executor.cxx
   src/algorithm/word_count.cxx
+  src/algorithm/checksum/bit32.cxx
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE src/include)
