@@ -10,7 +10,11 @@
 
 void words_module::execute(const cmd_line_params& params) {
   if (params.search_word.getValue().empty()) {
-    throw std::runtime_error("no search word provided");
+    throw std::runtime_error("error: no search word provided");
+  }
+
+  if (!std::filesystem::exists(params.file_input.getValue())) {
+    throw std::runtime_error("error: specified file does not exist");
   }
 
   auto filepath = std::filesystem::path{params.file_input.getValue()};
