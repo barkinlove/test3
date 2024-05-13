@@ -27,7 +27,7 @@ void words_module::execute(const cmd_line_params& params) {
   while (std::getline(file, data)) {
     count += algorithm::count_word(data, word);
   }
-  std::cout << std::format("The number of \"{}\" if file \"{}\" is {}", word,
+  std::cout << std::format("The number of \"{}\" in file \"{}\" is {}", word,
                            filepath.filename().string(), count)
             << '\n';
 }
