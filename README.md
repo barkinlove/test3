@@ -9,7 +9,7 @@ Prerequesities:
 
 1. Clone the repo
 ```
-git clone url
+git clone https://github.com/barkinlove/test3.git
 ```
 2. Initialize submodules
 ```
